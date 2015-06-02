@@ -1,5 +1,7 @@
 {
     "name": "khaldoun488/vat-validation-bundle",
+    "description" : "Verification of a VAT number for European Countries",
+    "type" : "symfony-bundle",
     "authors": [
         {
             "name": "Khaldoun",
@@ -7,5 +9,15 @@
         }
     ],
     "minimum-stability": "stable",
-    "require": {}
+    "require": {},
+    "require-dev": {
+      "phpunit/phpunit": "~4.5",
+      "phake/phake": "~2.0"
+    },
+    "autoload": {
+        "psr-4": {
+          "Khaldoun488\\VatValidationBundle\\": ""
+        }
+      }
+
 }
