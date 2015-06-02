@@ -1,0 +1,11 @@
+{
+    "name": "khaldoun488/vat-validation-bundle",
+    "authors": [
+        {
+            "name": "Khaldoun",
+            "email": "khaldoun488@hotmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {}
+}
