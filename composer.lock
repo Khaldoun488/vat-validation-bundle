@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "0eb8ce5fa34384fa648a4fbe70b63c37",
+    "hash": "4f78c2d37cf5f1e2b178f7582eb09618",
     "packages": [],
     "packages-dev": [
         {
@@ -60,58 +60,6 @@
                 "instantiate"
             ],
             "time": "2014-10-13 12:58:55"
-        },
-        {
-            "name": "phake/phake",
-            "version": "v2.1.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/mlively/Phake.git",
-                "reference": "20d76de0ec09f219d548752847835c256526d22d"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/mlively/Phake/zipball/20d76de0ec09f219d548752847835c256526d22d",
-                "reference": "20d76de0ec09f219d548752847835c256526d22d",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.3",
-                "sebastian/comparator": "~1.1"
-            },
-            "require-dev": {
-                "doctrine/common": "2.3.*",
-                "ext-soap": "*",
-                "hamcrest/hamcrest-php": "1.1.*",
-                "phpunit/phpunit": "3.7.*"
-            },
-            "suggest": {
-                "doctrine/common": "Allows mock annotations to use import statements for classes.",
-                "hamcrest/hamcrest-php": "Use Hamcrest matchers."
-            },
-            "type": "library",
-            "autoload": {
-                "psr-0": {
-                    "Phake": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "BSD-3-Clause"
-            ],
-            "authors": [
-                {
-                    "name": "Mike Lively",
-                    "email": "m@digitalsandwich.com"
-                }
-            ],
-            "description": "The Phake mock testing library",
-            "homepage": "https://github.com/mlively/Phake",
-            "keywords": [
-                "mock",
-                "testing"
-            ],
-            "time": "2015-05-09 13:58:15"
         },
         {
             "name": "phpdocumentor/reflection-docblock",
