@@ -1,6 +1,7 @@
 {
     "name": "khaldoun488/vat-validation-bundle",
     "description" : "Verification of a VAT number for European Countries",
+    "license": "MIT",
     "type" : "symfony-bundle",
     "authors": [
         {
