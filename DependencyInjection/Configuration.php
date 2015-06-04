@@ -10,7 +10,7 @@ use Symfony\Component\Config\Definition\ConfigurationInterface;
  */
 class Configuration implements ConfigurationInterface
 {
-    const WSDL_URL = "'http://ec.europa.eu/taxation_customs/vies/checkVatService.wsdl'";
+    const WSDL_URL = "http://ec.europa.eu/taxation_customs/vies/checkVatService.wsdl";
 
     /**
      * {@inheritdoc}
