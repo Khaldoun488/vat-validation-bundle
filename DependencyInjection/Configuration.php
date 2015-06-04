@@ -1,6 +1,6 @@
 <?php
 
-namespace Khaldoun488\VatValidationBundle\DependencyInjection;
+namespace Khaldoun\VatValidationBundle\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
@@ -18,7 +18,7 @@ class Configuration implements ConfigurationInterface
     public function getConfigTreeBuilder()
     {
         $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('khaldoun488_vat_validation');
+        $rootNode = $treeBuilder->root('khaldoun_vat_validation');
         $rootNode
             ->children()
             ->scalarNode('wsdl_url')

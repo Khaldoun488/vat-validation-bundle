@@ -1,5 +1,5 @@
 {
-    "name": "khaldoun488/vat-validation-bundle",
+    "name": "khaldoun/vat-validation-bundle",
     "description" : "Verification of a VAT number for European Countries",
     "license": "MIT",
     "type" : "symfony-bundle",
@@ -15,7 +15,7 @@
     },
     "autoload": {
         "psr-4": {
-          "Khaldoun488\\VatValidationBundle\\": ""
+          "Khaldoun\\VatValidationBundle\\": ""
         }
     }
 }

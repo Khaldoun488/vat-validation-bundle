@@ -1,6 +1,6 @@
 <?php
 
-namespace Khaldoun488\VatValidationBundle\Validator;
+namespace Khaldoun\VatValidationBundle\Validator;
 
 /**
  * Class VatValidator, check the validity of a vat number for a country
