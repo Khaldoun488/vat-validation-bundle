@@ -2,6 +2,7 @@
 
 namespace Khaldoun488\VatValidationBundle\Tests;
 
+use Khaldoun488\VatValidationBundle\DependencyInjection\Configuration;
 use Khaldoun488\VatValidationBundle\Validator\VatValidator;
 
 /**
@@ -21,7 +22,7 @@ class VatValidatorTest extends \PHPUnit_Framework_TestCase
     {
         parent::setUp();
 
-        $this->vatValidator = new VatValidator("http://ec.europa.eu/taxation_customs/vies/checkVatService.wsdl");
+        $this->vatValidator = new VatValidator(Configuration::WSDL_URL);
     }
 
     /**
