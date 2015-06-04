@@ -54,7 +54,7 @@ Add the following code to our controller:
  */
 public function indexAction($codeCountry, $vatNumber)
 {
-    $vatValidator = $this->get('khaldoun488.vat-validator');
+    $vatValidator = $this->get('khaldoun.vat.validator');
     $response     = $vatValidator->checkVatNumberForEuropeanCountry(
     	$codeCountry,
     	$vatNumber
