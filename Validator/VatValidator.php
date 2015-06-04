@@ -21,10 +21,15 @@ class VatValidator
     }
 
     /**
+     * Check the validity vat number.
+     * Parameters :
+     *              - $countryCode, the european country code (ex : FR ....)
+     *              - $vatNumber, the VAT number
+     *
      * @param string $countryCode
      * @param string $vatNumber
      *
-     * @return string
+     * @return array
      */
     public function checkVatNumberForEuropeanCountry($countryCode, $vatNumber)
     {
@@ -38,7 +43,7 @@ class VatValidator
             );
         }
 
-        if ($result != null) {
+        if ($result !== null) {
             $isValid = $result->valid;
         }
 
