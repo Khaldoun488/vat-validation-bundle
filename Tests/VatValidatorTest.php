@@ -2,7 +2,6 @@
 
 namespace Khaldoun488\VatValidationBundle\Tests;
 
-use Khaldoun488\VatValidationBundle\DependencyInjection\Configuration;
 use Khaldoun488\VatValidationBundle\Validator\VatValidator;
 
 /**
@@ -22,7 +21,7 @@ class VatValidatorTest extends \PHPUnit_Framework_TestCase
     {
         parent::setUp();
 
-        $this->vatValidator = new VatValidator(Configuration::WSDL_URL);
+        $this->vatValidator = new VatValidator('http://ec.europa.eu/taxation_customs/vies/checkVatService.wsdl');
     }
 
     /**
@@ -42,44 +41,48 @@ class VatValidatorTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * test response if soap fault catched
+     * @param string $codeCountry
+     * @param string $vatNumber
+     * @param array  $expectedResponse
+     *
+     * @dataProvider inputProvider
      */
-    public function testResponseifSoapFaultCatched()
+    public function testResponseDependsOfInputs($codeCountry, $vatNumber, $expectedResponse)
     {
-        $response = $this->vatValidator->checkVatNumberForEuropeanCountry("NOT A VALID COUNTRY", "NOT A VALID NUMBER");
+        $response = $this->vatValidator->checkVatNumberForEuropeanCountry($codeCountry, $vatNumber);
 
-        $this->assertEquals(array(
+        $this->assertEquals($expectedResponse, $response);
+    }
+
+    /**
+     * provide (country code, vat number) couples and return excepted responses for each one
+     *
+     * @return array
+     */
+    public function inputProvider()
+    {
+        $caseSoapFault = array("NOT A VALID COUNTRY", "NOT A VALID VAT NUMBER", array(
             "result"  => "error",
             "message" => "soap fault",
             "valid"   => false
-        ), $response);
-    }
+        ));
 
-    /**
-     * test response if vat number is correct but not valid
-     */
-    public function testResponseIfVatNumberIsCorrectButNotValid()
-    {
-        $response = $this->vatValidator->checkVatNumberForEuropeanCountry("FR", "FR087505226");
-
-        $this->assertEquals(array(
-            "result" => "success",
+        $caseValidInputButVatNumberNotValid = array("FR", "FR087505226", array(
+            "result"  => "success",
             "message" => "connection succeed",
-            "valid"  => false
-        ), $response);
-    }
+            "valid"   => false
+        ));
 
-    /**
-     * test response if vat number is correct and valid
-     */
-    public function testResponseIfVatNumberIsCorrectAndValid()
-    {
-        $response = $this->vatValidator->checkVatNumberForEuropeanCountry("FR", "08750522690");
-
-        $this->assertEquals(array(
-            "result" => "success",
+        $caseValidInputAndVatNumberValid = array("FR", "08750522690", array(
+            "result"  => "success",
             "message" => "connection succeed",
-            "valid"  => true
-        ), $response);
+            "valid"   => true
+        ));
+
+        return array(
+            $caseSoapFault,
+            $caseValidInputButVatNumberNotValid,
+            $caseValidInputAndVatNumberValid
+        );
     }
 }
