@@ -43,9 +43,7 @@ class VatValidator
             );
         }
 
-        if ($result !== null) {
-            $isValid = $result->valid;
-        }
+        $isValid = ($result !== null) ? $result->valid : false;
 
         return array(
             "result"  => "success",
