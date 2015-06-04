@@ -2,6 +2,7 @@
 
 namespace Khaldoun488\VatValidationBundle\DependencyInjection;
 
+use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
 
 /**
@@ -9,6 +10,8 @@ use Symfony\Component\Config\Definition\ConfigurationInterface;
  */
 class Configuration implements ConfigurationInterface
 {
+    const WSDL_URL = "'http://ec.europa.eu/taxation_customs/vies/checkVatService.wsdl'";
+
     /**
      * {@inheritdoc}
      */
@@ -19,10 +22,9 @@ class Configuration implements ConfigurationInterface
         $rootNode
             ->children()
             ->scalarNode('wsdl_url')
-            ->defaultValue('http://ec.europa.eu/taxation_customs/vies/checkVatService.wsdl')
-            ->end()
-            ->end()
-        ;
+            ->defaultValue(self::WSDL_URL)
+            ->end();
+
         return $treeBuilder;
     }
 }
