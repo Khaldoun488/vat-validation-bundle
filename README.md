@@ -1,3 +1,6 @@
+
+[![SensioLabsInsight](https://insight.sensiolabs.com/projects/8d723972-c983-4a18-acde-d6e7a0bb26b9/big.png)](https://insight.sensiolabs.com/projects/8d723972-c983-4a18-acde-d6e7a0bb26b9)
+
 # vat-validation-bundle
 Check the validity of a TVA Number for European Countries
 
