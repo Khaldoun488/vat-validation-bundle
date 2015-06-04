@@ -1,8 +1,8 @@
 <?php
 
-namespace Khaldoun488\VatValidationBundle\Tests;
+namespace Khaldoun\VatValidationBundle\Tests;
 
-use Khaldoun488\VatValidationBundle\Validator\VatValidator;
+use Khaldoun\VatValidationBundle\Validator\VatValidator;
 
 /**
  * Class VatValidatorTest : test the vat validator

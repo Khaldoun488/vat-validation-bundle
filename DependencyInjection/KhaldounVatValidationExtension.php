@@ -1,6 +1,6 @@
 <?php
 
-namespace Khaldoun488\VatValidationBundle\DependencyInjection;
+namespace Khaldoun\VatValidationBundle\DependencyInjection;
 
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -8,9 +8,9 @@ use Symfony\Component\DependencyInjection\Extension\Extension;
 use Symfony\Component\DependencyInjection\Loader;
 
 /**
- * Class Khaldoun488VatValidationExtension
+ * Class KhaldounVatValidationExtension
  */
-class Khaldoun488VatValidationExtension extends Extension
+class KhaldounVatValidationExtension extends Extension
 {
     /**
      * {@inheritdoc}
