@@ -2,6 +2,7 @@
 
 namespace Khaldoun\VatValidationBundle\Tests;
 
+use Khaldoun\VatValidationBundle\Exception\VATNumberNotValidException;
 use Khaldoun\VatValidationBundle\Validator\VatValidator;
 
 /**
@@ -41,14 +42,19 @@ class VatValidatorTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @param string $codeCountry
-     * @param string $vatNumber
-     * @param array  $expectedResponse
+     * @param string       $codeCountry
+     * @param string       $vatNumber
+     * @param boolean|null $expectedResponse
+     * @param string|null  $exceptedException
      *
      * @dataProvider inputProvider
      */
-    public function testResponseDependsOfInputs($codeCountry, $vatNumber, $expectedResponse)
+    public function testResponseDependsOfInputs($codeCountry, $vatNumber, $expectedResponse, $exceptedException)
     {
+        if ($exceptedException !== null) {
+            $this->setExpectedException($exceptedException);
+        }
+
         $response = $this->vatValidator->checkVatNumberForEuropeanCountry($codeCountry, $vatNumber);
 
         $this->assertEquals($expectedResponse, $response);
@@ -61,23 +67,11 @@ class VatValidatorTest extends \PHPUnit_Framework_TestCase
      */
     public function inputProvider()
     {
-        $caseSoapFault = array("NOT A VALID COUNTRY", "NOT A VALID VAT NUMBER", array(
-            "result"  => "error",
-            "message" => "soap fault",
-            "valid"   => false
-        ));
+        $caseSoapFault = array("NOT A VALID COUNTRY", "NOT A VALID VAT NUMBER", null, \SoapFault::class);
 
-        $caseValidInputButVatNumberNotValid = array("FR", "FR087505226", array(
-            "result"  => "success",
-            "message" => "connection succeed",
-            "valid"   => false
-        ));
+        $caseValidInputButVatNumberNotValid = array("FR", "FR087505226", null, VATNumberNotValidException::class);
 
-        $caseValidInputAndVatNumberValid = array("FR", "08750522690", array(
-            "result"  => "success",
-            "message" => "connection succeed",
-            "valid"   => true
-        ));
+        $caseValidInputAndVatNumberValid = array("FR", "08750522690", true, null);
 
         return array(
             $caseSoapFault,

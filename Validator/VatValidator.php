@@ -1,6 +1,7 @@
 <?php
 
 namespace Khaldoun\VatValidationBundle\Validator;
+use Khaldoun\VatValidationBundle\Exception\VATNumberNotValidException;
 
 /**
  * Class VatValidator, check the validity of a vat number for a country
@@ -29,26 +30,20 @@ class VatValidator
      * @param string $countryCode
      * @param string $vatNumber
      *
-     * @return array
+     * @throws VATNumberNotValidException
+     *
+     * @return boolean
      */
     public function checkVatNumberForEuropeanCountry($countryCode, $vatNumber)
     {
-        try {
-            $result = $this->soapClient->checkVat(array('countryCode' => $countryCode, 'vatNumber' => $vatNumber));
-        } catch (\SoapFault $e) {
-            return array(
-                "result"  => "error",
-                "message" => "soap fault",
-                "valid"   => false
-            );
+        $result = $this->soapClient->checkVat(array('countryCode' => $countryCode, 'vatNumber' => $vatNumber));
+
+        $isValid = $result->valid;
+
+        if ($result === null || ($isValid === false)) {
+            throw new VATNumberNotValidException();
         }
 
-        $isValid = ($result !== null) ? $result->valid : false;
-
-        return array(
-            "result"  => "success",
-            "message" => "connection succeed",
-            "valid"   => $isValid
-        );
+        return true;
     }
 }
