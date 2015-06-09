@@ -11,6 +11,7 @@
     <services>
         <service id="khaldoun.vat.validator" class="%khaldoun.vat.validator.class%" >
             <argument>%vat_validation.wsdl_url%</argument>
+            <argument>%trace_soap_errors%</argument>
         </service>
     </services>
 </container>

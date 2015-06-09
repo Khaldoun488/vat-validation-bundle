@@ -20,9 +20,14 @@ class Configuration implements ConfigurationInterface
         $treeBuilder = new TreeBuilder();
         $rootNode = $treeBuilder->root('khaldoun_vat_validation');
         $rootNode
+            ->isRequired()
             ->children()
-            ->scalarNode('wsdl_url')
-            ->defaultValue(self::WSDL_URL)
+                ->scalarNode('wsdl_url')
+                    ->defaultValue(self::WSDL_URL)
+                ->end()
+                ->booleanNode('trace_soap_errors')
+                    ->defaultTrue()
+                ->end()
             ->end();
 
         return $treeBuilder;

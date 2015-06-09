@@ -2,6 +2,8 @@
 
 namespace Khaldoun\VatValidationBundle\Validator;
 
+use Khaldoun\VatValidationBundle\Exception\VATNumberNotValidException;
+
 /**
  * Class VatValidator, check the validity of a vat number for a country
  */
@@ -13,11 +15,12 @@ class VatValidator
     protected $soapClient;
 
     /**
-     * @param string $wsdlUrl
+     * @param string  $wsdlUrl
+     * @param boolean $trace
      */
-    public function __construct($wsdlUrl)
+    public function __construct($wsdlUrl, $trace)
     {
-        $this->soapClient = new \SoapClient($wsdlUrl, array('trace' => true));
+        $this->soapClient = new \SoapClient($wsdlUrl, array('trace' => $trace));
     }
 
     /**
@@ -29,26 +32,16 @@ class VatValidator
      * @param string $countryCode
      * @param string $vatNumber
      *
-     * @return array
+     * @throws VATNumberNotValidException
      */
-    public function checkVatNumberForEuropeanCountry($countryCode, $vatNumber)
+    public function ensureVatNumberIsValidForEuropeanCountry($countryCode, $vatNumber)
     {
-        try {
-            $result = $this->soapClient->checkVat(array('countryCode' => $countryCode, 'vatNumber' => $vatNumber));
-        } catch (\SoapFault $e) {
-            return array(
-                "result"  => "error",
-                "message" => "soap fault",
-                "valid"   => false
-            );
+        $result = $this->soapClient->checkVat(array('countryCode' => $countryCode, 'vatNumber' => $vatNumber));
+
+        $isValid = (null !== $result) ? $result->valid : false;
+
+        if (false === $isValid) {
+            throw new VATNumberNotValidException();
         }
-
-        $isValid = ($result !== null) ? $result->valid : false;
-
-        return array(
-            "result"  => "success",
-            "message" => "connection succeed",
-            "valid"   => $isValid
-        );
     }
 }
