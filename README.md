@@ -55,11 +55,13 @@ Add the following code to our controller:
 public function indexAction($codeCountry, $vatNumber)
 {
     $vatValidator = $this->get('khaldoun.vat.validator');
-    $response     = $vatValidator->checkVatNumberForEuropeanCountry(
-    	$codeCountry,
-    	$vatNumber
-    );
-}
+        try {
+            $vatValidator->ensureVatNumberIsValidForEuropeanCountry($countryCodeParameter, $vatNumberParameter);
+        } catch (\SoapFault $soapFault) {
+            // DO SOMETHING HERE
+        } catch (VATNumberNotValidException $e) {
+            // DO SOMETHING HERE
+        }}
 ```
 
 If you want more information, click here: [VIES (VAT Information Exchange System)](http://ec.europa.eu/taxation_customs/vies/vieshome.do?selectedLanguage=en)
