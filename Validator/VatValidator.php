@@ -1,6 +1,7 @@
 <?php
 
 namespace Khaldoun\VatValidationBundle\Validator;
+
 use Khaldoun\VatValidationBundle\Exception\VATNumberNotValidException;
 
 /**
