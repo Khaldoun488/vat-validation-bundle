@@ -46,7 +46,7 @@ class VatValidatorTest extends \PHPUnit_Framework_TestCase
             $this->setExpectedException($exceptedException);
         }
 
-        $response = $this->vatValidator->ensureVatNumberIsValidForEuropeanCountry($codeCountry, $vatNumber);
+        $this->vatValidator->ensureVatNumberIsValidForEuropeanCountry($codeCountry, $vatNumber);
     }
 
     /**
