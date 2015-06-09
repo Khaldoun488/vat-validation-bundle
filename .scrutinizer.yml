@@ -3,6 +3,9 @@ before_commands:
 
 tools:
     php_code_sniffer:
+        filter:
+            excluded_paths:
+                - vendor/*
         config:
             ruleset: ../symfony-2/ruleset.xml
             standard: PSR2
@@ -14,7 +17,7 @@ tools:
     php_pdepend: true
     php_analyzer: true
     sensiolabs_security_checker: true
-    external_code_coverage: true
+    php_code_coverage: true
 
 build:
     tests:
