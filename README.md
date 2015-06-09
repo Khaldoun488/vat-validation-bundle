@@ -38,7 +38,7 @@ Register the bundle in app/AppKernel.php
 public function registerBundles()
 {
     $bundles = array(
-        new Khaldoun\VatValidationBundle\ KhaldounVatValidationBundle(),
+        new Khaldoun\VatValidationBundle\KhaldounVatValidationBundle(),
     );
 }
 ```
