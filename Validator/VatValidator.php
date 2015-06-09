@@ -14,11 +14,12 @@ class VatValidator
     protected $soapClient;
 
     /**
-     * @param string $wsdlUrl
+     * @param string  $wsdlUrl
+     * @param boolean $trace
      */
-    public function __construct($wsdlUrl)
+    public function __construct($wsdlUrl, $trace)
     {
-        $this->soapClient = new \SoapClient($wsdlUrl, array('trace' => true));
+        $this->soapClient = new \SoapClient($wsdlUrl, array('trace' => $trace));
     }
 
     /**
@@ -31,19 +32,15 @@ class VatValidator
      * @param string $vatNumber
      *
      * @throws VATNumberNotValidException
-     *
-     * @return boolean
      */
-    public function checkVatNumberForEuropeanCountry($countryCode, $vatNumber)
+    public function ensureVatNumberIsValidForEuropeanCountry($countryCode, $vatNumber)
     {
         $result = $this->soapClient->checkVat(array('countryCode' => $countryCode, 'vatNumber' => $vatNumber));
 
-        $isValid = $result->valid;
+        $isValid = (null !== $result) ? $result->valid : false;
 
-        if ($result === null || ($isValid === false)) {
+        if (false === $isValid) {
             throw new VATNumberNotValidException();
         }
-
-        return true;
     }
 }

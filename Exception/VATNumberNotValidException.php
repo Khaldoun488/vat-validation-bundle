@@ -7,13 +7,14 @@ namespace Khaldoun\VatValidationBundle\Exception;
  */
 class VATNumberNotValidException extends \RuntimeException
 {
-    const MESSAGE = "VAT Number not valid";
+    const MESSAGE        = "VAT Number not valid";
+    const EXCEPTION_CODE = 400;
 
     /**
-     * Construct
+     * {@inheritdoc}
      */
-    public function __construct()
+    public function __construct($message = self::MESSAGE, $code = self::EXCEPTION_CODE, \Exception $previous = null)
     {
-        parent::__construct(self::MESSAGE, 400);
+        parent::__construct($message, $code, $previous);
     }
 }

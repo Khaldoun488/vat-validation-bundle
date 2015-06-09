@@ -24,5 +24,6 @@ class KhaldounVatValidationExtension extends Extension
         $config = $this->processConfiguration($configuration, $configs);
 
         $container->setParameter("vat_validation.wsdl_url", $config['wsdl_url']);
+        $container->setParameter("trace_soap_errors", $config['trace_soap_errors']);
     }
 }
