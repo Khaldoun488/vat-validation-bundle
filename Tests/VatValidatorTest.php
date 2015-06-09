@@ -36,20 +36,17 @@ class VatValidatorTest extends \PHPUnit_Framework_TestCase
     /**
      * @param string       $codeCountry
      * @param string       $vatNumber
-     * @param boolean|null $expectedResponse
      * @param string|null  $exceptedException
      *
      * @dataProvider inputProvider
      */
-    public function testResponseDependsOfInputs($codeCountry, $vatNumber, $expectedResponse, $exceptedException)
+    public function testResponseDependsOfInputs($codeCountry, $vatNumber, $exceptedException)
     {
         if (null !== $exceptedException) {
             $this->setExpectedException($exceptedException);
         }
 
         $response = $this->vatValidator->ensureVatNumberIsValidForEuropeanCountry($codeCountry, $vatNumber);
-
-        $this->assertEquals($expectedResponse, $response);
     }
 
     /**
@@ -59,11 +56,11 @@ class VatValidatorTest extends \PHPUnit_Framework_TestCase
      */
     public function inputProvider()
     {
-        $caseSoapFault = array("NOT A VALID COUNTRY", "NOT A VALID VAT NUMBER", null, \SoapFault::class);
+        $caseSoapFault = array("NOT A VALID COUNTRY", "NOT A VALID VAT NUMBER", \SoapFault::class);
 
-        $caseValidInputButVatNumberNotValid = array("FR", "FR087505226", null, VATNumberNotValidException::class);
+        $caseValidInputButVatNumberNotValid = array("FR", "FR087505226", VATNumberNotValidException::class);
 
-        $caseValidInputAndVatNumberValid = array("FR", "08750522690", null, null);
+        $caseValidInputAndVatNumberValid = array("FR", "08750522690", null);
 
         return array(
             $caseSoapFault,
