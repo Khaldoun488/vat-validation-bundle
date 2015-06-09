@@ -64,7 +64,8 @@ public function indexAction($codeCountry, $vatNumber)
             // DO SOMETHING HERE
         } catch (VATNumberNotValidException $e) {
             // DO SOMETHING HERE
-        }}
+        }
+}
 ```
 
 If you want more information, click here: [VIES (VAT Information Exchange System)](http://ec.europa.eu/taxation_customs/vies/vieshome.do?selectedLanguage=en)
