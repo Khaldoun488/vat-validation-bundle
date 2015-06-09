@@ -57,14 +57,14 @@ Add the following code to our controller:
  */
 public function indexAction($codeCountry, $vatNumber)
 {
-    $vatValidator = $this->get('khaldoun.vat.validator');
-        try {
-            $vatValidator->ensureVatNumberIsValidForEuropeanCountry($countryCodeParameter, $vatNumberParameter);
-        } catch (\SoapFault $soapFault) {
-            // DO SOMETHING HERE
-        } catch (VATNumberNotValidException $e) {
-            // DO SOMETHING HERE
-        }
+   $vatValidator = $this->get('khaldoun.vat.validator');
+   try {
+   	$vatValidator->ensureVatNumberIsValidForEuropeanCountry($countryCodeParameter, $vatNumberParameter);
+   } catch (\SoapFault $soapFault) {
+   	// DO SOMETHING HERE
+   } catch (VATNumberNotValidException $e) {
+   	// DO SOMETHING HERE
+   }
 }
 ```
 
